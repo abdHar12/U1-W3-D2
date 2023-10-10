@@ -134,88 +134,60 @@ const generateTable = function () {
   const table = document.createElement("table");
   const divTable = document.getElementById("tableArea");
   divTable.appendChild(table);
+
   const thead = document.createElement("thead");
   const tbody = document.createElement("tbody");
   table.appendChild(thead);
   table.appendChild(tbody);
+
   const rowHead = document.createElement("tr");
-  const row1 = document.createElement("tr");
-  const row2 = document.createElement("tr");
-  const row3 = document.createElement("tr");
-  const row4 = document.createElement("tr");
-  const row5 = document.createElement("tr");
   thead.appendChild(rowHead);
-  tbody.appendChild(row1);
-  tbody.appendChild(row3);
-  tbody.appendChild(row3);
-  tbody.appendChild(row4);
-  tbody.appendChild(row5);
-  const th1Thead = document.createElement("th");
-  const th2Thead = document.createElement("th");
-  const th3Thead = document.createElement("th");
-  const th4Thead = document.createElement("th");
-  const td1FirstRow = document.createElement("td");
-  const td2FirstRow = document.createElement("td");
-  const td3FirstRow = document.createElement("td");
-  const td4FirstRow = document.createElement("td");
-  const td1SecondRow = document.createElement("td");
-  const td2SecondRow = document.createElement("td");
-  const td3SecondRow = document.createElement("td");
-  const td4SecondRow = document.createElement("td");
-  const td1ThirdRow = document.createElement("td");
-  const td2ThirdRow = document.createElement("td");
-  const td3ThirdRow = document.createElement("td");
-  const td4ThirdRow = document.createElement("td");
-  const td1FourthRow = document.createElement("td");
-  const td2FourthRow = document.createElement("td");
-  const td3FourthRow = document.createElement("td");
-  const td4FourthRow = document.createElement("td");
-  const td1FifthRow = document.createElement("td");
-  const td2FifthRow = document.createElement("td");
-  const td3FifthRow = document.createElement("td");
-  const td4FifthRow = document.createElement("td");
-  rowHead.append(th1Thead);
-  rowHead.append(th2Thead);
-  rowHead.append(th3Thead);
-  rowHead.append(th4Thead);
-  th1Thead.innerText = "immagine";
-  th2Thead.innerText = "nome prodotto";
-  th3Thead.innerText = "quantità";
-  th4Thead.innerText = "prezzo";
-  row1.append(td1FirstRow);
-  row1.append(td2FirstRow);
-  row1.append(td3FirstRow);
-  row1.append(td4FirstRow);
-  row2.append(td1SecondRow);
-  row2.append(td2SecondRow);
-  row2.append(td3SecondRow);
-  row2.append(td4SecondRow);
-  row3.append(td1ThirdRow);
-  row3.append(td2ThirdRow);
-  row3.append(td3ThirdRow);
-  row3.append(td4ThirdRow);
-  row4.append(td1FourthRow);
-  row4.append(td2FourthRow);
-  row4.append(td3FourthRow);
-  row4.append(td4FourthRow);
-  row5.append(td1FifthRow);
-  row5.append(td2FifthRow);
-  row5.append(td3FifthRow);
-  row5.append(td4FifthRow);
+  for (let i = 0; i < 4; i++) {
+    const thThead = document.createElement("th");
+    rowHead.appendChild(thThead);
+  }
+
+  for (let i = 0; i < 5; i++) {
+    const row = document.createElement("tr");
+    tbody.appendChild(row);
+    for (let i = 0; i < 4; i++) {
+      const cell = document.createElement("td");
+      row.appendChild(cell);
+    }
+  }
 };
 generateTable();
-
 /* ESERCIZIO 12
         Crea una funzione che aggiunga una riga alla tabella precedentemente creata e fornisca i dati necessari come parametri
-     */
+*/
 
-const addRow = function () {};
+const addRow = function (imm, product, quantity, price) {
+  const infos = [imm, product, quantity, price];
+  const newRow = document.createElement("tr");
+  const tableBody = document.getElementsByTagName("tbody");
+  tableBody[0].appendChild(newRow);
+  console.log(tableBody);
+
+  for (let i = 0; i < infos.length; i++) {
+    const newCell = document.createElement("td");
+    const rowToAppendCells = document.querySelector("tbody tr:last-child");
+    console.log(rowToAppendCells);
+    rowToAppendCells.appendChild(newCell);
+    newCell.innerText = infos[i];
+  }
+};
+addRow("ciao", "Borsa", "2", "20");
 
 /* ESERCIZIO 14
        Crea una funzione che nasconda le immagini della tabella quando eseguita
      */
 
-const hideAllImages = function () {};
+const hideAllImages = function () {
+  const img = document.querySelector("table img");
+  img.remove();
+};
+
+hideAllImages();
 
 /* EXTRA ESERCIZIO 15
        Crea una funzione che cambi il colore del h2 con id "changeMyColor" con un colore random ad ogni click ricevuto
