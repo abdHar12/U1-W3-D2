@@ -183,8 +183,8 @@ addRow("ciao", "Borsa", "2", "20");
      */
 
 const hideAllImages = function () {
-  const img = document.querySelector("table img");
-  img.remove();
+  const img = document.querySelectorAll("table img");
+  Array.from(img).forEach((img) => img.remove());
 };
 
 hideAllImages();
